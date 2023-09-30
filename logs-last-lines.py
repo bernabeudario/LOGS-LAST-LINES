@@ -5,7 +5,8 @@ limitSizeFile=10000000 # Bytes
 quantityLines=20000+1
 folderInput='C:/Dario/log-files/logs_ETL'
 folderOutput='C:/Dario/log-files/logs_ETL_lastlines'
-fileOutputErrors = open(f'{folderOutput}/_Files_with_errors.log', 'w')
+encodingType = 'latin-1'
+fileOutputErrors = open(f'{folderOutput}/_Files_with_errors.log', 'w', encoding=encodingType)
 
 def createNewFileLog(fileName):
     fileInputSize=os.path.getsize(f'{folderInput}/{fileName}')
@@ -14,16 +15,16 @@ def createNewFileLog(fileName):
         return
 
     fileInputLinesCount=0
-    with open(f'{folderInput}/{fileName}', 'r') as fileInput:
+    with open(f'{folderInput}/{fileName}', 'r', encoding=encodingType) as fileInput:
         for line in fileInput:
             fileInputLinesCount+=1
     fileInput.close()
 
-    with open(f'{folderInput}/{fileName}', 'r') as fileInput:
+    with open(f'{folderInput}/{fileName}', 'r', encoding=encodingType) as fileInput:
         fileContent=fileInput.readlines()
     fileInput.close()
 
-    fileOutput = open(f'{folderOutput}/{fileName}', 'w')
+    fileOutput = open(f'{folderOutput}/{fileName}', 'w', encoding=encodingType)
     print(fileName)
     q=min(quantityLines,fileInputLinesCount)
     for num in range(1,q): 
