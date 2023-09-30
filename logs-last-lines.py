@@ -5,8 +5,8 @@ limitSizeFile=10000000 # Bytes
 quantityLines=20000+1
 folderInput='C:/Dario/log-files/logs_ETL'
 folderOutput='C:/Dario/log-files/logs_ETL_lastlines'
-encodingType = 'latin-1'
-fileOutputErrors = open(f'{folderOutput}/_Files_with_errors.log', 'w', encoding=encodingType)
+encodingType='latin-1'
+fileOutputErrors=open(f'{folderOutput}/_Files_with_errors.log', 'w', encoding=encodingType)
 
 def createNewFileLog(fileName):
     fileInputSize=os.path.getsize(f'{folderInput}/{fileName}')
@@ -40,8 +40,8 @@ def gitCommitPush():
 
 def main():
     os.system ('cls')
-    listFiles = os.listdir(folderInput)
-    listFilesLog = [fileItem for fileItem in listFiles if os.path.isfile(f'{folderInput}/{fileItem}') and fileItem.endswith(".log")]
+    listFiles=os.listdir(folderInput)
+    listFilesLog=[fileItem for fileItem in listFiles if os.path.isfile(f'{folderInput}/{fileItem}') and fileItem.endswith(".log")]
     for i in listFilesLog:
         createNewFileLog(i)
     fileOutputErrors.close()
